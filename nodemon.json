@@ -1,0 +1,5 @@
+{
+  "watch": ["*.ts", "_helpers/**/*.ts", "_middleware/**/*.ts", "accounts/**/*.ts"],
+  "ext": "ts,json",
+  "exec": "tsx server.ts"
+}
