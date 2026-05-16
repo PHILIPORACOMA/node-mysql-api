@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Node.js TypeScript MySQL Boilerplate API",
   "scripts": {
-    "start": "ts server.ts",
+    "start": "tsx server.ts",
     "start:dev": "nodemon"
   },
   "dependencies": {
