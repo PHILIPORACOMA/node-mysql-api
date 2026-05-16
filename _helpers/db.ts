@@ -13,18 +13,27 @@ async function initialize() {
     const { host, port, user, password, database } = config.database;
 
     // Create DB if it doesn't exist then close connection
-    const connection = await mysql.createConnection({ host, port, user, password });
-    await connection.query(`CREATE DATABASE IF NOT EXISTS \`${database}\`;`);
-    await connection.end();
-
-    // Connect to DB with Sequelize
-    const sequelize = new Sequelize(database, user, password, {
-        dialect: 'mysql',
-        dialectOptions: {
-            connectTimeout: 60000
-        },
-        logging: false
-    });
+       // 1. ADDED SSL HERE
+         const connection = await mysql.createConnection({ 
+             host, 
+             port, 
+             user, 
+             password,
+             ssl: { rejectUnauthorized: false } 
+         });     
+        // Create DB if it doesn't exist
+        await connection.query(`CREATE DATABASE IF NOT EXISTS \`${database}\`;`);
+        
+        // Connect to DB
+        // 2. ADDED SSL HERE
+        const sequelize = new Sequelize(database, user, password, { 
+            dialect: 'mysql',
+            dialectOptions: {
+                ssl: {
+                    rejectUnauthorized: false
+                }
+            }
+        });
 
     // Init models
     db.Account = accountModel(sequelize);
