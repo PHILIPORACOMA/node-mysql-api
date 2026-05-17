@@ -11,7 +11,7 @@ import config from '../config.json';
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    from: 'onboarding@resend.dev', 
+                    from: 'IPT-2026-FULLSTACK@resend.dev', 
                     to: to,
                     subject: subject,
                     html: html,
