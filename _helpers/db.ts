@@ -1,4 +1,4 @@
- import config from '../config.json';
+ 
      import mysql from 'mysql2/promise';
      import { Sequelize } from 'sequelize';
      import accountModel from '../accounts/account.model';
@@ -11,11 +11,11 @@
    
     async function initialize() {
         // 1. THIS FORCES IT TO READ RENDER VARIABLES FIRST
-        const host = process.env.DB_HOST || config.database.host;
-        const port = process.env.DB_PORT ? parseInt(process.env.DB_PORT as string) : config.database.port;
-        const user = process.env.DB_USER || config.database.user;
-        const password = process.env.DB_PASSWORD || config.database.password;
-        const database = process.env.DB_NAME || config.database.database;
+        const host = process.env.DB_HOST || 'localhost';
+        const port = process.env.DB_PORT ? parseInt(process.env.DB_PORT as string) : 3306;
+        const user = process.env.DB_USER || 'root';
+        const password = process.env.DB_PASSWORD || '';
+        const database = process.env.DB_NAME || 'myapp';
    
         // 2. CREATE DB WITH SSL
         const connection = await mysql.createConnection({ 

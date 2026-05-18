@@ -1,8 +1,7 @@
 
     // RESEND VERSION
-    import config from '../config.json';
     
-     export default async function sendEmail({ to, subject, html, from = config.emailFrom }: any) {
+     export default async function sendEmail({ to, subject, html, from = process.env.EMAIL_FROM || 'info@my-node-api.com' }: any) {
          
          
          const authorizedEmail = 'epicarusracoma@gmail.com'; 

@@ -16,9 +16,18 @@ A simple authentication REST API built with Node.js, TypeScript, Express, Sequel
    npm install
    ```
 
-2. **Configure `config.json`**
-   - Add your MySQL password
-   - Add your [Ethereal Email](https://ethereal.email/) SMTP credentials
+2. **Configure environment variables**
+   - Create a `.env` file in the root directory
+   - Add your MySQL credentials and JWT secret:
+     ```env
+     DB_HOST=localhost
+     DB_USER=root
+     DB_PASSWORD=yourpassword
+     DB_NAME=node_mysql_api
+     JWT_SECRET=your_random_secret_here
+     RESEND_API_KEY=your_resend_api_key
+     ```
+   - *Note: `config.json` is no longer required and is gitignored for security.*
 
 3. **Start the server**
    ```bash
