@@ -1,5 +1,6 @@
 # Credentials and Secrets (CRITICAL)
 .env
+config.json
 *.pem
     
 # Dependencies
