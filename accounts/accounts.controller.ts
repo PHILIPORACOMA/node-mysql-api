@@ -1,4 +1,4 @@
-import express from 'express';
+﻿import express from 'express';
 const router = express.Router();
 import Joi from 'joi';
 import validateRequest from '../_middleware/validate-request.ts';
@@ -6,7 +6,7 @@ import authorize from '../_middleware/authorize.ts';
 import Role from '../_helpers/role.ts';
 import accountService from './account.service.ts';
 
-// ─── Routes ───────────────────────────────────────────────────────────────────
+// ─── Routes ──────────────────────────────────────────────────────────────────
 
 router.post('/authenticate', authenticateSchema, authenticate);
 router.post('/refresh-token', refreshToken);
@@ -24,7 +24,7 @@ router.delete('/:id', authorize(), _delete);
 
 export default router;
 
-// ─── Schema Validation Middleware ─────────────────────────────────────────────
+// ─── Schema Validation Middleware ───────────────────────────────────────────
 
 function authenticateSchema(req: any, res: any, next: any) {
     const schema = Joi.object({
@@ -115,7 +115,7 @@ function updateSchema(req: any, res: any, next: any) {
     validateRequest(req, next, schema);
 }
 
-// ─── Route Handler Functions ──────────────────────────────────────────────────
+// ─── Route Handler Functions ────────────────────────────────────────────────
 
 function authenticate(req: any, res: any, next: any) {
     const { email, password } = req.body;
@@ -168,7 +168,7 @@ function verifyEmail(req: any, res: any, next: any) {
 
 function forgotPassword(req: any, res: any, next: any) {
     accountService.forgotPassword(req.body, req.get('origin'))
-        .then(() => res.json({ message: 'Please check your email for password reset instructions' }))
+        .then(() => res.json({ message: 'Please check your email for password reset instructions' }))   
         .catch(next);
 }
 
@@ -226,14 +226,15 @@ function _delete(req: any, res: any, next: any) {
         .catch(next);
 }
 
-// ─── Local Helper ─────────────────────────────────────────────────────────────
+// ─── Local Helper ───────────────────────────────────────────────────────────
 
 function setTokenCookie(res: any, token: any) {
     const cookieOptions = {
         httpOnly: true,
         expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
-        secure: process.env.COOKIE_SECURE === 'true' || process.env.NODE_ENV === 'production',
-        sameSite: 'lax' as const
+        // For production (cross-site), secure must be true and sameSite must be 'none'
+        secure: true, 
+        sameSite: 'none' as const
     };
     res.cookie('refreshToken', token, cookieOptions);
 }
