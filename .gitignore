@@ -1,12 +1,4 @@
- # Database (Aiven)
-DB_HOST=ipt-2026-backend-epicarusracoma-1919.k.aivencloud.com
-DB_PORT=13441
-DB_USER=avnadmin
-DB_PASSWORD
-DB_NAME=node-mysql-api
-    
-# Security
-JWT_SECRET=95f95ce8a54f616ccba73ae4fd81194b
-   
-# Email (Resend or Mailtrap API Key)
-RESEND_API_KEY=re_G6HqGsyt_GpLMaoPSABSPrM94z4868x1K
+# Config and Secrets
+.env
+config.json
+*.pem
