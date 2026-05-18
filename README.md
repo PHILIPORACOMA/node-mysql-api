@@ -2,12 +2,17 @@
 
 A simple authentication REST API built with Node.js, TypeScript, Express, Sequelize, and JWT.
 
+## Live Deployment
+- **Frontend URL:** https://ipt-2026-frontend-eta.vercel.app
+- **Backend URL:** https://node-mysql-api-yes5.onrender.com
+- **Swagger API Docs:** https://node-mysql-api-yes5.onrender.com/api-docs
+
 ## Tech Stack
 - **Node.js + TypeScript** — runtime and language
 - **Express** — web framework
 - **MySQL + Sequelize** — database and ORM
 - **JWT** — authentication tokens
-- **Nodemailer** — email sending
+- **Resend** — email sending (API)
 
 ## Setup
 
@@ -26,6 +31,7 @@ A simple authentication REST API built with Node.js, TypeScript, Express, Sequel
      DB_NAME=node_mysql_api
      JWT_SECRET=your_random_secret_here
      RESEND_API_KEY=your_resend_api_key
+     CORS_ORIGIN=http://localhost:4200
      ```
    - *Note: `config.json` is no longer required and is gitignored for security.*
 
@@ -38,6 +44,17 @@ A simple authentication REST API built with Node.js, TypeScript, Express, Sequel
    ```
    http://localhost:4000/api-docs
    ```
+
+## Production Deployment (Render)
+Ensure the following Environment Variables are set in your Render Web Service:
+- `NODE_ENV`: `production`
+- `JWT_SECRET`: `(Your secure secret)`
+- `CORS_ORIGIN`: `https://ipt-2026-frontend-eta.vercel.app`
+- `DB_HOST`: `(Your Aiven/External DB Host)`
+- `DB_USER`: `(Your DB User)`
+- `DB_PASSWORD`: `(Your DB Password)`
+- `DB_NAME`: `(Your DB Name)`
+- `RESEND_API_KEY`: `(Your Resend API Key)`
 
 ## API Endpoints
 
@@ -69,3 +86,4 @@ A simple authentication REST API built with Node.js, TypeScript, Express, Sequel
 - All other accounts are **User** by default
 - Admin can access and manage all accounts
 - Users can only access their own account
+- Cookies are configured with `SameSite: None` and `Secure: true` for cross-site support (Vercel to Render).
