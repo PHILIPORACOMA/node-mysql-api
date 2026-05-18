@@ -1,4 +1,19 @@
-# Config and Secrets
+# Credentials and Secrets (CRITICAL)
 .env
 config.json
 *.pem
+    
+# Dependencies
+node_modules/
+    
+# Build output
+dist/
+build/
+   
+# Logs
+*.log
+npm-debug.log*
+   
+# OS Files
+.DS_Store
+Thumbs.db
