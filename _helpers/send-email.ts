@@ -4,8 +4,7 @@
     
      export default async function sendEmail({ to, subject, html, from = config.emailFrom }: any) {
          
-         // THE FIX: We send the email to YOU, so Resend doesn't block it.
-         // We add the "intended recipient" to the top of the message.
+         
          const authorizedEmail = 'epicarusracoma@gmail.com'; 
          const modifiedHtml = `<p><strong>Note:</strong> This message was intended for: ${to}</p><hr>${html}`;
     
